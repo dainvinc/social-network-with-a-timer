@@ -1,5 +1,17 @@
 <% include partials/header %>
 
-<h1>Welcome to your Home page</h1>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome to your Home page</h1>        
+    </div>
+    <div class="row">
+        <% friends.forEach(function(friend) { %>
+            <div class="col-lg-6 col-sm-2">
+                <%= friend.name %>
+                <img src="<%= friend.image %>">
+            </div>    
+        <% }); %>
+    </div>
+</div>
 
 <% include partials/footer %>
