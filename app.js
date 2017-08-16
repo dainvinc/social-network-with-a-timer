@@ -1,7 +1,11 @@
 var express = require('express');
 // var request = require('request');
 var app = express();
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
+mongoose.connect("mongodb://localhost/time_bomb");
+app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 var friends = [{
@@ -42,6 +46,10 @@ app.get('/', function(req, res) {
 
 app.get('/friends', function(req, res) {
     res.render("friends");
+});
+
+app.get('/friends/new', function(req, res) {
+    res.render("newfriends");
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
