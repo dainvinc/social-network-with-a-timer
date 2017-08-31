@@ -5,51 +5,55 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost/time_bomb");
-app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended: true}));
 
-var friends = [{
-  name: "Cesare",
-  image: "http://dummyimage.com/114x170.jpg/ff4444/ffffff"
-}, {
-  name: "Candis",
-  image: "http://dummyimage.com/180x153.bmp/5fa2dd/ffffff"
-}, {
-  name: "Jannelle",
-  image: "http://dummyimage.com/202x234.png/dddddd/000000"
-}, {
-  name: "Drusie",
-  image: "http://dummyimage.com/234x162.jpg/cc0000/ffffff"
-}, {
-  name: "Aila",
-  image: "http://dummyimage.com/113x134.png/dddddd/000000"
-}, {
-  name: "Englebert",
-  image: "http://dummyimage.com/105x222.bmp/dddddd/000000"
-}, {
-  name: "Artemus",
-  image: "http://dummyimage.com/134x208.jpg/5fa2dd/ffffff"
-}, {
-  name: "Brianna",
-  image: "http://dummyimage.com/194x169.jpg/cc0000/ffffff"
-}, {
-  name: "Raynor",
-  image: "http://dummyimage.com/249x153.png/dddddd/000000"
-}, {
-  name: "Alec",
-  image: "http://dummyimage.com/195x124.bmp/5fa2dd/ffffff"
-}];
+var friendSchema = new mongoose.Schema({
+    name: String,
+    image: String,
+    text: String,
+    created: {type: Date, default: Date.now}
+});
+
+var Friend = mongoose.model("Friend", friendSchema);
+
+Friend.create({
+    title: "Hello World",
+    text: "How's it going?"
+});
 
 app.get('/', function(req, res) {
-    res.render('home', {friends: friends});
+    res.redirect('friends');
 });
 
 app.get('/friends', function(req, res) {
-    res.render("friends");
+    Friend.find({}, function(err, friends) {
+        if(err) {
+            console.log("There's an error " +err);
+        } else {
+            res.render("friends", {friends: friends});
+        }
+    });
+    // res.render("friends");
+});
+
+app.post('/friends', function(req, res) {
+    var name = req.body.name;
+    var image = req.body.image;
+    
+    var newFriend = {friends:friends};
+    friendSchema.push(newFriend);
+    
+    res.redirect("/friends");
 });
 
 app.get('/friends/new', function(req, res) {
     res.render("newfriends");
+});
+
+app.get('/friends/*', function(req, res) {
+  res.send("What are you doing with your life?");
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {

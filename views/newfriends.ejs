@@ -1,9 +1,10 @@
 <% include partials/header %>
 
-<form class="form-group" style="margin: 20px auto;">
+<form class="form-group" style="margin: 20px auto;" action="/friends" method="POST">
     <input class="form-control" type="text" name="name" placeholder="Name">
     <input class="form-control" type="text" name="image" placeholder="Image Link">
+    <input class="form-control" type="text" name="text" placeholder="Enter Some Text...">
     <button class="btn btn-primary block" type="submit" style="margin: 10px auto;">Add Friend</button>
-</form>
+</form> 
 
 <% include partials/footer %>
