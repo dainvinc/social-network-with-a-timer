@@ -48,8 +48,15 @@ app.get('/friends/new', function(req, res) {
     res.render("newfriends");
 });
 
-app.get('/friends/*', function(req, res) {
-  res.send("What are you doing with your life?");
+app.get('/friends/:id', function(req, res) {
+    Friend.findById(req.params.id, function(err, foundFriend) {
+        if(err) {
+            res.redirect("/friends");
+        } else {
+            res.render("showFriend", {friend: foundFriend});
+        }
+    });
+//   res.send("What are you doing with your life?");
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
