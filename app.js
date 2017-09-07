@@ -18,11 +18,6 @@ var friendSchema = new mongoose.Schema({
 
 var Friend = mongoose.model("Friend", friendSchema);
 
-Friend.create({
-    title: "Hello World",
-    text: "How's it going?"
-});
-
 app.get('/', function(req, res) {
     res.redirect('friends');
 });
@@ -39,13 +34,14 @@ app.get('/friends', function(req, res) {
 });
 
 app.post('/friends', function(req, res) {
-    var name = req.body.name;
-    var image = req.body.image;
-    
-    var newFriend = {friends:friends};
-    friendSchema.push(newFriend);
-    
-    res.redirect("/friends");
+    Friend.create(req.body.friend, function(err, newFriend){
+        if(err) {
+            res.render("/friends/new");
+        } else {
+            res.redirect("/friends");
+        }
+    });
+    //res.redirect("/friends");
 });
 
 app.get('/friends/new', function(req, res) {

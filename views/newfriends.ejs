@@ -1,10 +1,15 @@
 <% include partials/header %>
 
-<form class="form-group" style="margin: 20px auto;" action="/friends" method="POST">
-    <input class="form-control" type="text" name="name" placeholder="Name">
-    <input class="form-control" type="text" name="image" placeholder="Image Link">
-    <input class="form-control" type="text" name="text" placeholder="Enter Some Text...">
-    <button class="btn btn-primary block" type="submit" style="margin: 10px auto;">Add Friend</button>
-</form> 
+<div class="ui container segment">
+    <div class="ui header">
+        <h1>Add New Friend</h1>
+    </div>
+    <form action="/friends" method="POST">
+        <input type="text" name="friend[name]" placeholder="Name"></input>
+        <input type="text" name="friend[image]" placeholder="Image link here"></input>
+        <input type="text" name="friend[text]" placeholder="Text"></input>
+        <input type="submit"></input>
+    </form>
+</div>
 
 <% include partials/footer %>

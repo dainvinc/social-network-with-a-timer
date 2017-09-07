@@ -1,7 +1,10 @@
 <% include partials/header %>
 
-<h1>Friends</h1>
-
-<span><%= friends %></span>
-
+<div class="ui text container">
+    <div class="ui header"><h1>Friends</h1></div>
+    <h3><%= friends.name %></h3>
+    <span><%= friends.created %></span>
+    <img src="<%= friends.image %>">
+    <h5><%= friends.text %></h5>
+</div>
 <% include partials/footer %>
