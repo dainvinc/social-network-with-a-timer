@@ -1,13 +1,15 @@
 <% include partials/header %>
 
 <div class="ui text container">
-    <div class="ui header"><h1>Friends</h1></div>
+    <div class="ui header"><h1>Welcome</h1></div>
     <% friends.forEach(function(friend) { %>
+    <div class="ui segment">
         <h2><%= friend.name %></h2>
-        <img class="ui rounded image" src="<%=friend.image%>">
-        <span><%= friend.created %></span>
-        <h5><% friend.text %></h5>
+        <img class="ui rounded image" src="<%= friend.image %>">
+        <span><%= friend.created.toDateString() %></span>
+        <h5><%= friend.text.substring(0, 100) %>...</h5>
         <a href="/friends/<%= friend._id %>">Read more</a>
-    <% }) %>
+    </div>
+    <% }) %>    
 </div>
 <% include partials/footer %>
