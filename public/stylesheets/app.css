@@ -2,3 +2,8 @@
     text-transform: uppercase;
     /*background-color: white;*/
 }
+
+img {
+    height: 200px;
+    width: 250px;
+}

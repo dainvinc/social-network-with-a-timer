@@ -2,9 +2,11 @@
 
 <div class="ui text container">
     <div class="ui header"><h1>Friends</h1></div>
-    <h3><%= friends.name %></h3>
-    <span><%= friends.created %></span>
-    <img src="<%= friends.image %>">
-    <h5><%= friends.text %></h5>
+    <% friends.forEach(function(friend) { %>
+        <h2><%= friend.name %></h2>
+        <img src="<%=friend.image%>">
+        <span><%= friend.created %></span>
+        <h5><% friend.text %></h5>
+    <% }) %>
 </div>
 <% include partials/footer %>
