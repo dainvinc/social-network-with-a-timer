@@ -30,7 +30,10 @@ app.get('/friends', function(req, res) {
             res.render("friends", {friends: friends});
         }
     });
-    // res.render("friends");
+});
+
+app.get('/resume', function(req, res) {
+    res.render("portfolio");
 });
 
 app.post('/friends', function(req, res) {
@@ -41,7 +44,6 @@ app.post('/friends', function(req, res) {
             res.redirect("/friends");
         }
     });
-    //res.redirect("/friends");
 });
 
 app.get('/friends/new', function(req, res) {

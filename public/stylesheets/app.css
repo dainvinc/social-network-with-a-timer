@@ -7,3 +7,12 @@ img {
     height: 200px;
     width: 250px;
 }
+
+.profile-img {
+    height: 400px;
+    width: 620px;
+}
+
+.ui.header .icon:only-child {
+    margin-right: 2.5px;
+}
