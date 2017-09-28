@@ -6,6 +6,7 @@
         <h6>Created on: <span class="ui big"><%= friend.created.toDateString() %></span></h6>
         <img class="ui rounded centered image profile-img" src="<%= friend.image %>">
         <p class="ui rounded segment"><%= friend.text %></p>
+        <a href="/friends/<%= friend._id %>/edit"><button class="ui positive button">Edit</button>
     </div>
     
 
