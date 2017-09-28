@@ -16,3 +16,34 @@ img {
 .ui.header .icon:only-child {
     margin-right: 2.5px;
 }
+
+#mainDiv {
+    position: relative;
+    top: 25%;
+    margin: 0 auto;
+    width: fit-content;
+    height: 150px;
+}
+
+#mainTitle {
+    font-size: 60px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#fix-segment {
+    width: 50%;
+}
+
+#footerDiv {
+    position: absolute;
+    height: 9em;
+    width: 100%;
+    background-color: wheat;
+    color: black;
+    bottom: 0;
+}
+
+#footerSocialDiv {
+    opacity: 0.9;
+}
