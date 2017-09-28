@@ -2,6 +2,7 @@ var express = require('express');
 // var request = require('request');
 var app = express();
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost/time_bomb");
@@ -70,6 +71,10 @@ app.get('/friends/:id/edit', function(req, res) {
            res.render("editpost", {friend: foundFriend});
        }
     });
+});
+
+app.put('friends/:id', function(req, res) {
+    res.send("Post updated!");
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
