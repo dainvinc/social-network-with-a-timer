@@ -85,6 +85,10 @@ app.put('/friends/:id', function(req, res) {
     });
 });
 
+app.delete('/friends/:id', function(req, res) {
+    res.send("Post deleted");
+});
+
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Server has started...");
 });
