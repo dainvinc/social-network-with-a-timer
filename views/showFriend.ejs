@@ -6,18 +6,22 @@
         <h6>Created on: <span class="ui big"><%= friend.created.toDateString() %></span></h6>
         <img class="ui rounded centered image profile-img" src="<%= friend.image %>">
         <p class="ui rounded segment"><%= friend.text %></p>
-        <a href="/friends/<%= friend._id %>/edit">
-            <button class="ui labeled icon button">
-                <i class="edit icon"></i>
-                Edit
-            </button>
-        </a>
-        <form action="/friends/<%= friend._id %>?_method=DELETE" method="POST">
-            <button class="ui labeled icon button">
-                <i class="edit icon"></i>
-                Delete
-            </button>
-        </form>
+        
+        <div class="ui buttons">
+            <a href="/friends/<%= friend._id %>/edit">
+                <button class="ui secondary button">
+                    <i class="edit icon"></i>
+                    Edit
+                </button>
+            </a>
+            <div class="or"></div>
+            <form action="/friends/<%= friend._id %>?_method=DELETE" method="POST">
+                <button class="ui negative button">
+                    <i class="remove circle icon"></i>
+                    Delete
+                </button>
+            </form>
+        </div>
     </div>
     
 
