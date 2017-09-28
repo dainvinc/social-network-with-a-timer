@@ -74,8 +74,15 @@ app.get('/friends/:id/edit', function(req, res) {
     });
 });
 
-app.put('friends/:id', function(req, res) {
-    res.send("Post updated!");
+app.put('/friends/:id', function(req, res) {
+    // res.send("Post updated!");
+    Friend.findByIdAndUpdate(req.params.id, req.body.friend, function(err, updatedBlog) {
+        if(err) {
+            res.redirect("/friends");
+        } else {
+            res.redirect("/friends/" +req.params.id);
+        }
+    });
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
