@@ -2,6 +2,7 @@ var express = require('express');
 // var request = require('request');
 var app = express();
 var bodyParser = require('body-parser');
+var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 
@@ -9,6 +10,8 @@ mongoose.connect("mongodb://localhost/time_bomb");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+//This should be written only after the BODY PARSER
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 var friendSchema = new mongoose.Schema({
@@ -39,6 +42,7 @@ app.get('/resume', function(req, res) {
 });
 
 app.post('/friends', function(req, res) {
+    req.body.friend.text = req.sanitize(req.body.friend.text);
     Friend.create(req.body.friend, function(err, newFriend){
         if(err) {
             res.render("/friends/new");
@@ -76,6 +80,7 @@ app.get('/friends/:id/edit', function(req, res) {
 
 app.put('/friends/:id', function(req, res) {
     // res.send("Post updated!");
+    req.body.friend.text = req.sanitize(req.body.friend.text);
     Friend.findByIdAndUpdate(req.params.id, req.body.friend, 
     function(err, updatedFriend) {
         if(err) {

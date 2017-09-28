@@ -10,7 +10,12 @@
         <img class="ui rounded image" src="<%= friend.image %>">
         <span><%= friend.created.toDateString() %></span>
         <h5><%= friend.text.substring(0, 100) %>...</h5>
-        <a href="/friends/<%= friend._id %>">Read more</a>
+        <a href="/friends/<%= friend._id %>">
+            <button class="ui right labeled secondary icon button">
+                <i class="right arrow icon"></i>
+                Read more
+            </button>
+            </a>
     </div>
     <% }) %>    
 </div>
