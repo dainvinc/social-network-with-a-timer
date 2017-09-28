@@ -61,6 +61,10 @@ app.get('/friends/:id', function(req, res) {
 //   res.send("What are you doing with your life?");
 });
 
+app.get('/friends/:id/edit', function(req, res) {
+   res.send("Edit post"); 
+});
+
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Server has started...");
 });
