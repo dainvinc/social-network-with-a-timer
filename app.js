@@ -62,7 +62,14 @@ app.get('/friends/:id', function(req, res) {
 });
 
 app.get('/friends/:id/edit', function(req, res) {
-   res.send("Edit post"); 
+//   res.send("Edit post"); 
+    Friend.findById(req.params.id, function(err, foundFriend) {
+       if(err) {
+           res.redirect("/friends");
+       } else {
+           res.render("editpost", {friend: foundFriend});
+       }
+    });
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
