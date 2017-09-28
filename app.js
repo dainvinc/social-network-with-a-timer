@@ -76,7 +76,8 @@ app.get('/friends/:id/edit', function(req, res) {
 
 app.put('/friends/:id', function(req, res) {
     // res.send("Post updated!");
-    Friend.findByIdAndUpdate(req.params.id, req.body.friend, function(err, updatedBlog) {
+    Friend.findByIdAndUpdate(req.params.id, req.body.friend, 
+    function(err, updatedFriend) {
         if(err) {
             res.redirect("/friends");
         } else {
@@ -86,7 +87,14 @@ app.put('/friends/:id', function(req, res) {
 });
 
 app.delete('/friends/:id', function(req, res) {
-    res.send("Post deleted");
+    // res.send("Post deleted");
+    Friend.findByIdAndRemove(req.params.id, function(err, deletedFriend) {
+        if(err) {
+            res.redirect("/friends");
+        } else {
+            res.redirect("/friends");
+        }
+    });
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
