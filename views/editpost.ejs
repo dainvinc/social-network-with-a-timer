@@ -4,7 +4,7 @@
     <div class="ui header">
         <h1>Edit Post: <%= friend.name %></h1>
     </div>
-    <form class="ui form" action="/friends" method="POST">
+    <form class="ui form" action="/friends/<%= friend._id %>?_method=PUT" method="POST">
         <div class="field">
             <label>Name</label>
             <input type="text" name="friend[name]" value="<%= friend.name %>">    
