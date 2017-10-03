@@ -12,7 +12,11 @@
                 <p class="ui rounded segment">
                     <%= comment.author %> - <%= comment.text %>
                 </p>
-            <% }); %>    
+            <% }); %> 
+            <button class="ui primary button">
+                    <i class="comment icon"></i>
+                    Add Comment
+            </button>
         </div>
         <div class="ui buttons">
             <a href="/friends/<%= friend._id %>/edit">
@@ -21,11 +25,7 @@
                     Edit
                 </button>
             </a>
-            <div class="or"></div>
-            <button class="ui primary button">
-                    <i class="comment icon"></i>
-                    Comment
-            </button>
+            
             <div class="or"></div>
             <form action="/friends/<%= friend._id %>?_method=DELETE" method="POST">
                 <button class="ui negative button">

@@ -51,10 +51,11 @@ app.get('/friends/new', function(req, res) {
 });
 
 app.get('/friends/:id', function(req, res) {
-    Friend.findById(req.params.id, function(err, foundFriend) {
+    Friend.findById(req.params.id).populate("comments").exec(function(err, foundFriend) {
         if(err) {
             res.redirect("/friends");
         } else {
+            console.log(foundFriend);
             res.render("showFriend", {friend: foundFriend});
         }
     });
