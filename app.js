@@ -6,6 +6,7 @@ var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var Friend = require('./models/friends');
+var seedDB = require('./seeds');
 
 mongoose.connect("mongodb://localhost/time_bomb");
 app.set("view engine", "ejs");
