@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var Friend = require('./models/friends');
 
 mongoose.connect("mongodb://localhost/time_bomb");
 app.set("view engine", "ejs");
@@ -13,15 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 //This should be written only after the BODY PARSER
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
-
-var friendSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    text: String,
-    created: {type: Date, default: Date.now}
-});
-
-var Friend = mongoose.model("Friend", friendSchema);
 
 app.get('/', function(req, res) {
     res.redirect('friends');
