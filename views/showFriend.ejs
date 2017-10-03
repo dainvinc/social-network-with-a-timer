@@ -6,7 +6,14 @@
         <h6>Created on: <span class="ui big"><%= friend.created.toDateString() %></span></h6>
         <img class="ui rounded centered image profile-img" src="<%= friend.image %>">
         <p class="ui rounded segment"><%= friend.text %></p>
-        
+        <div class="ui secondary segment">
+            <strong>Comments</strong>
+            <% friend.comments.forEach(function(comment) { %>
+                <p class="ui rounded segment">
+                    <%= comment.author %> - <%= comment.text %>
+                </p>
+            <% }); %>    
+        </div>
         <div class="ui buttons">
             <a href="/friends/<%= friend._id %>/edit">
                 <button class="ui secondary button">
