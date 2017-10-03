@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var Friend = require('./models/friends');
 var seedDB = require('./seeds');
 
+seedDB();
 mongoose.connect("mongodb://localhost/time_bomb");
 app.set("view engine", "ejs");
 app.use(express.static("public"));

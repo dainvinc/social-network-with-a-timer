@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Friend = require('.models/friends');
+var Friend = require('./models/friends');
 
 function seedDB() {
     Friend.remove({}, function(err) {
@@ -9,3 +9,5 @@ function seedDB() {
         console.log("Cleaned up the database!");
     });    
 }
+
+module.exports = seedDB;
