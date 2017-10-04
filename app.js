@@ -83,7 +83,7 @@ app.post('/friends/:id', function(req, res) {
     });
 });
 
-app.get('/friends/:id/addcomment', function(req, res) {
+app.get('/friends/:id/comments/new', function(req, res) {
     // res.send("New Comment!");
     Friend.findById(req.params.id, function(err, foundFriend) {
         if(err) {
