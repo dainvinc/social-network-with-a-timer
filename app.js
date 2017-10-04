@@ -6,6 +6,7 @@ var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var Friend = require('./models/friends');
+var Comment = require('./models/comments');
 var seedDB = require('./seeds');
 
 seedDB();
@@ -90,6 +91,24 @@ app.get('/friends/:id/comments/new', function(req, res) {
             res.redirect("/friends/:id");
         } else {
             res.render("comments/addcomment", {friend: foundFriend});
+        }
+    });
+});
+
+app.post('/friends/:id/comments', function(req, res) {
+    Friend.findById(req.params.id, function(err, friend) {
+        if(err) {
+            res.redirect("/friends");
+        } else {
+            Comment.create(req.body.comment, function(err, comment) {
+                if(err) {
+                    console.log(err);
+                } else {
+                    friend.comments.push(comment);
+                    friend.save();
+                    res.redirect("/friends/" +friend._id);
+                }
+            });
         }
     });
 });
