@@ -18,7 +18,7 @@ app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 app.get('/', function(req, res) {
-    res.redirect('friends');
+    res.redirect('/friends');
 });
 
 app.get('/friends', function(req, res) {
@@ -39,7 +39,7 @@ app.post('/friends', function(req, res) {
     req.body.friend.text = req.sanitize(req.body.friend.text);
     Friend.create(req.body.friend, function(err, newFriend){
         if(err) {
-            res.render("/friends/new");
+            res.render("friends/new");
         } else {
             res.redirect("/friends");
         }
@@ -47,7 +47,7 @@ app.post('/friends', function(req, res) {
 });
 
 app.get('/friends/new', function(req, res) {
-    res.render("newfriends");
+    res.render("friends/newfriends");
 });
 
 app.get('/friends/:id', function(req, res) {
@@ -55,8 +55,8 @@ app.get('/friends/:id', function(req, res) {
         if(err) {
             res.redirect("/friends");
         } else {
-            console.log(foundFriend);
-            res.render("showFriend", {friend: foundFriend});
+            //console.log(foundFriend);
+            res.render("friends/showFriend", {friend: foundFriend});
         }
     });
 //   res.send("What are you doing with your life?");
@@ -68,8 +68,29 @@ app.get('/friends/:id/edit', function(req, res) {
        if(err) {
            res.redirect("/friends");
        } else {
-           res.render("editpost", {friend: foundFriend});
+           res.render("friends/editpost", {friend: foundFriend});
        }
+    });
+});
+
+app.post('/friends/:id', function(req, res) {
+    Friend.create(req.body.friend.comments, function(err, newcomment) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/friends/:id");
+        }
+    });
+});
+
+app.get('/friends/:id/addcomment', function(req, res) {
+    // res.send("New Comment!");
+    Friend.findById(req.params.id, function(err, foundFriend) {
+        if(err) {
+            res.redirect("/friends/:id");
+        } else {
+            res.render("comments/addcomment", {friend: foundFriend});
+        }
     });
 });
 

@@ -17,10 +17,12 @@
                     </div>
                 <% }); %> 
             </div>
-            <button class="ui primary button">
+            <a href="/friends/<%= friend._id %>/addcomment">
+                            <button class="ui primary button">
                     <i class="comment icon"></i>
                     Add Comment
-            </button>
+            </button>    
+            </a>
         </div>
         <div class="ui buttons">
             <a href="/friends/<%= friend._id %>/edit">
