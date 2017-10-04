@@ -6,13 +6,17 @@
         <h6>Created on: <span class="ui big"><%= friend.created.toDateString() %></span></h6>
         <img class="ui rounded centered image profile-img" src="<%= friend.image %>">
         <p class="ui rounded segment"><%= friend.text %></p>
-        <div class="ui secondary segment">
+        <div class="ui secondary list segment">
             <strong>Comments</strong>
-            <% friend.comments.forEach(function(comment) { %>
-                <p class="ui rounded segment">
-                    <%= comment.author %> - <%= comment.text %>
-                </p>
-            <% }); %> 
+            <div class="item">
+                <% friend.comments.forEach(function(comment) { %>
+                    <img class="ui avatar image">
+                    <div class="content">
+                        <a class="header"><%= comment.author %></a>
+                        <div class="description"><%= comment.text %> 4 days ago.</div>
+                    </div>
+                <% }); %> 
+            </div>
             <button class="ui primary button">
                     <i class="comment icon"></i>
                     Add Comment
@@ -25,7 +29,6 @@
                     Edit
                 </button>
             </a>
-            
             <div class="or"></div>
             <form action="/friends/<%= friend._id %>?_method=DELETE" method="POST">
                 <button class="ui negative button">
