@@ -8,16 +8,16 @@
         <p class="ui rounded segment"><%= friend.text %></p>
         <div class="ui secondary list segment">
             <strong>Comments</strong>
-            <div class="item">
-                <% friend.comments.forEach(function(comment) { %>
-                    <img class="ui avatar image">
-                    <div class="content">
-                        <a class="header"><%= comment.author %></a>
-                        <div class="description"><%= comment.text %> 4 days ago.</div>
-                    </div>
-                <% }); %> 
-            </div>
-            <a href="/friends/<%= friend._id %>/addcomment">
+            <% friend.comments.forEach(function(comment) { %>
+                <div class="item">
+                        <img class="ui avatar image">
+                        <div class="content">
+                            <a class="header"><%= comment.author %></a>
+                            <div class="description"><%= comment.text %> 4 days ago.</div>
+                        </div>
+                </div>
+            <% }); %> 
+            <a href="/friends/<%= friend._id %>/comments/new">
                             <button class="ui primary button">
                     <i class="comment icon"></i>
                     Add Comment
