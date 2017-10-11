@@ -2,10 +2,24 @@
 
 <div class="ui container segment">
 <h1>User Registration</h1>
-<form class="ui inverted form" action="/signup" method="POST">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <button>Submit</button>
+<form class="ui form" action="/signup" method="POST">
+    <div class="ui inverted segment">
+      <div class="ui inverted equal width form">
+        <div class="ui equal width form">
+          <div class="fields">
+            <div class="field">
+              <label>Username</label>
+              <input type="text" name="username" placeholder="Username">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          </div>
+        <button class="ui positive submit button" type="submit">SignUp</button>
+      </div>
+    </div>
 </form>
 </div>
 
