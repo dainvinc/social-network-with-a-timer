@@ -21,12 +21,16 @@ app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 seedDB();
 
-passport.use(require("express-session")({
+app.use(require("express-session")({
     secret: "I am new to this.",
     resave: false,
     saveUninitialized: false
 }));
-
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get('/', function(req, res) {
     res.redirect('/friends');
@@ -145,6 +149,10 @@ app.delete('/friends/:id', function(req, res) {
             res.redirect("/friends");
         }
     });
+});
+
+app.get('/signup', function(req, res) {
+    res.render('signup');
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
