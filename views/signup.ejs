@@ -1,0 +1,39 @@
+<% include partials/header %>
+
+<div class="ui container segment">
+<h1>User Registration</h1>
+<form action="/signup" method="post">
+    <div class="ui inverted segment">
+      <div class="ui inverted equal width form">
+        <div class="ui equal width form">
+          <div class="fields">
+            <div class="field">
+              <label>Username</label>
+              <input type="text" placeholder="Username">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <label>First name</label>
+              <input type="text" placeholder="First Name">
+            </div>
+            <div class="field">
+              <label>Middle name</label>
+              <input type="text" placeholder="Middle Name">
+            </div>
+            <div class="field">
+              <label>Last name</label>
+              <input type="text" placeholder="Last Name">
+            </div>
+          </div>
+        </div>
+        <div class="ui positive submit button">SignUp</div>
+      </div>
+    </div>
+</form>
+</div>
+<% include partials/footer %>
