@@ -21,6 +21,13 @@ app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 seedDB();
 
+passport.use(require("express-session")({
+    secret: "I am new to this.",
+    resave: false,
+    saveUninitialized: false
+}));
+
+
 app.get('/', function(req, res) {
     res.redirect('/friends');
 });
