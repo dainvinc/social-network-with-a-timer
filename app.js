@@ -155,6 +155,10 @@ app.get('/signup', function(req, res) {
     res.render('signup');
 });
 
+app.post('/signup', function(req, res) {
+    res.send("Signing in...");
+});
+
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Server has started...");
 });
