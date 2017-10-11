@@ -15,7 +15,7 @@ var seedDB = require('./seeds');
 seedDB();
 mongoose.connect("mongodb://localhost/time_bomb");
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 //This should be written only after the BODY PARSER
 app.use(expressSanitizer());
