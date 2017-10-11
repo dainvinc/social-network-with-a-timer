@@ -12,7 +12,6 @@ var Comment = require('./models/comments');
 var User = require('./models/user');
 var seedDB = require('./seeds');
 
-seedDB();
 mongoose.connect("mongodb://localhost/time_bomb");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname +"/public"));
@@ -20,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //This should be written only after the BODY PARSER
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
+seedDB();
 
 app.get('/', function(req, res) {
     res.redirect('/friends');
