@@ -5,8 +5,11 @@ var bodyParser = require('body-parser');
 var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 var Friend = require('./models/friends');
 var Comment = require('./models/comments');
+var User = require('./models/user');
 var seedDB = require('./seeds');
 
 seedDB();
