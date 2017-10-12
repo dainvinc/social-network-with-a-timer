@@ -156,7 +156,17 @@ app.get('/signup', function(req, res) {
 });
 
 app.post('/signup', function(req, res) {
-    res.send("Signing in...");
+    // res.send("Signing in...");
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user) {
+        if(err) {
+            console.log(err);
+            return res.render("signup");
+        }
+        passport.authenticate("local")(req, res, function() {
+            res.redirect("/friends");
+        });
+    });
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
