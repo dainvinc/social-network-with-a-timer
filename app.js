@@ -37,6 +37,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/friends', isLoggedIn, function(req, res) {
+    console.log(req.user);
     Friend.find({}, function(err, friends) {
         if(err) {
             console.log("There's an error " +err);
