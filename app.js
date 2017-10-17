@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
     res.redirect('/friends');
 });
 
-app.get('/friends', function(req, res) {
+app.get('/friends', isLoggedIn, function(req, res) {
     Friend.find({}, function(err, friends) {
         if(err) {
             console.log("There's an error " +err);
@@ -179,6 +179,18 @@ app.post('/login', passport.authenticate("local", {
 }), function(req, res) {
     
 });
+
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/login');
+})
+
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+};
 
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Server has started...");
