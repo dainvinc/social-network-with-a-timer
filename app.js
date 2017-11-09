@@ -12,9 +12,9 @@ var Comment = require('./models/comments');
 var User = require('./models/user');
 var seedDB = require('./seeds');
 
-console.log(process.env.DATABASEURL);
+var database_url = process.env.DATABASEURL || "mongodb://localhost/time_bomb";
 // mongoose.connect("mongodb://localhost/time_bomb");
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect(database_url);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.urlencoded({extended: true}));
