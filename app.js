@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //This should be written only after the BODY PARSER
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
-seedDB();
+// seedDB();
 
 app.use(require("express-session")({
     secret: "I am new to this.",
