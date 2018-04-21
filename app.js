@@ -6,6 +6,7 @@ var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var flash = require('connect-flash');
 var LocalStrategy = require('passport-local');
 var Friend = require('./models/friends');
 var Comment = require('./models/comments');
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 // seedDB();
+app.use(flash());
 
 app.use(require("express-session")({
     secret: "I am new to this.",
@@ -30,6 +32,14 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(function(req, res, next) {
+   res.locals.currentUser = req.user;
+   res.locals.error = req.flash("error");
+   
+   next();
+});
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -173,7 +183,7 @@ app.post('/signup', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-   res.render("login"); 
+   res.render("login", { message: req.flash("error") }); 
 });
 
 app.post('/login', passport.authenticate("local", {
@@ -192,6 +202,7 @@ function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) {
         return next();
     }
+    req.flash("error", "Please, Login to continue...");
     res.redirect('/login');
 };
 
